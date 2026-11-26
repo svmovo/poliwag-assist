@@ -1,3 +1,4 @@
+// By svmovo (github.com/svmovo) - Sam Poliwag Assist
 // Poliwag Assistance v7 — prompts sent to ChatGPT or Gemini, and matching of the subject filter.
 
 // Poliwag transcription rules, sent with the preparation prompt AND with every segment (button Send).
@@ -96,6 +97,9 @@ export function transcriptionRules(language) {
     `  · [code_switch] when the speaker switches to another language, per the guideline.`,
     `  · Microphone noise, background noise and interference are NOT vocal tags.`,
     `  · Obsolete tags, never use them: [heavy_breathing], [boo].`,
+    `- QUIET SPEECH — PRECISION: some speakers are very quiet, far from the microphone or whispering. Listen to the audio carefully, as many times as needed, and write EVERY audible word, even if it is faint or low in volume. Never skip, shorten or summarise a quiet part, and never leave out words just because they are hard to hear. Keep the exact words as spoken, in order, with nothing added.`,
+    `  · Only when a part is truly impossible to understand after careful listening, mark just that part with [unintelligible], following the Poliwag guidelines. A faint word you can still make out must be written, not tagged.`,
+    `  · If you are unsure of a faint word, write your best hearing and put it in "uncertain_words".`,
     `- Put any word you are not sure about in "uncertain_words".`
   ];
 }
@@ -219,3 +223,4 @@ export function mergeFilter(subjects, value) {
     };
   });
     }
+

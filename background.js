@@ -1,3 +1,4 @@
+// By svmovo (github.com/svmovo) - Sam Poliwag Assist
 // Sam Poliwag Assist v7 — background service worker (ChatGPT or Gemini).
 // The bar on the Poliwag page and the ChatGPT tab both talk to it; it is the only writer of task data.
 
@@ -295,7 +296,7 @@ async function readNow() {
   if (!latest?.ok) return { ok: false, error: latest?.error };
   if (latest.generating) return { ok: true, generating: true };
   if (latest.hasMessage) await handleReply(tab.id, latest);
-  return { ok: true };
+  return { ok: true, pageError: latest.pageError || "" };
 }
 
 async function runFilter(pageSubjects) {
@@ -524,3 +525,4 @@ async function checkOnWake() {
   const tab = await tabAlive(task.chat.tabId);
   if (!tab) await setChat("disconnected", "Navigateur redémarré — ouvrez la conversation de la task.", { tabId: null });
                            }
+

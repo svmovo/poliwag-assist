@@ -1,3 +1,4 @@
+// By svmovo (github.com/svmovo) - Sam Poliwag Assist
 // Poliwag Assistance v2 — local storage (chrome.storage.local only; nothing leaves the PC).
 //
 // pa_state : { currentTaskId, settings, chatgpt, lastEvent }
@@ -121,3 +122,4 @@ export function similarity(a, b) {
   }
   return 1 - prev[y.length] / Math.max(x.length, y.length);
 }
+

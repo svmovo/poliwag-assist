@@ -1,3 +1,4 @@
+// By svmovo (github.com/svmovo) - Sam Poliwag Assist
 // Sam Poliwag Assist v7 — content script for chatgpt.com AND gemini.google.com
 //
 // What it does (and only this):
@@ -99,12 +100,26 @@
     return pre.closest('[data-message-id], [data-testid^="conversation-turn"], article') || pre;
   }
 
+  // A visible error / limit message from the AI page (so a silent failure is reported, not waited for).
+  const ERR_RE = /something went wrong|try again later|reached (your|the) (usage )?limit|usage limit|limit reached|can'?t (help|process)|couldn'?t (process|generate)|unable to (process|generate)|too many requests|حدث خطأ|حصل خطأ|وصلت (إلى )?الحد|الحد الأقصى|حاول مرة أخرى|une erreur s'est produite|limite (d'utilisation )?atteinte|réessayez/i;
+  function pageError() {
+    try {
+      const last = latestReplyNode();
+      const cands = [];
+      if (last && !last.querySelector("pre")) cands.push((last.innerText || "").trim());
+      for (const el of document.querySelectorAll('[role="alert"], [role="status"], snack-bar-container, .error-message, .error-container, message-content .error')) cands.push((el.innerText || "").trim());
+      for (const t of cands) if (t && t.length < 400 && ERR_RE.test(t)) return t.slice(0, 200);
+    } catch {}
+    return "";
+  }
+
   function readLatest() {
     const last = latestReplyNode();
     const m = readMessage(last);
     return {
       ok: true,
       generating: isGenerating(),
+      pageError: pageError(),
       hasMessage: !!last,
       preCount: document.querySelectorAll("pre").length,
       // Every code block of the conversation, in order (user messages never render code blocks),
@@ -328,3 +343,4 @@
   setInterval(report, 700);
   chrome.runtime.sendMessage({ type: "PA_CHAT_URL", url: location.href }).catch(() => {});
 })();
+

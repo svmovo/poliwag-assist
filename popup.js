@@ -1,3 +1,4 @@
+// By svmovo (github.com/svmovo) - Sam Poliwag Assist
 // Sam Poliwag Assist v2 — popup: turns the top bar on for the Poliwag site, or hides / shows it.
 
 const $ = (id) => document.getElementById(id);
@@ -59,3 +60,4 @@ $("btn-toggle").addEventListener("click", async () => {
 });
 
 render();
+

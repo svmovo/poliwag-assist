@@ -1,3 +1,4 @@
+// By svmovo (github.com/svmovo) - Sam Poliwag Assist
 // Sam Poliwag Assist v7 — floating top bar on the Poliwag (Maven) page.
 //
 // What it touches on the page:
@@ -32,60 +33,60 @@
         unintelligible: "كلام مسموع ولكن غير مفهوم", code_switch: "تغيير اللغة داخل الكلام"
       },
       rules: [
-        "استعمل Tag بس لو كان الصوت مسموع بوضوح.",
+        "استخدم Tag بس لو الصوت مسموع بوضوح.",
         "[breath] للشهيق المسموع بوضوح.",
         "[sigh] للتنهيدة.",
         "[unintelligible] للكلام غير المفهوم، مش للتقطيع التقني.",
         "[code_switch] عند الانتقال للغة أخرى، حسب قواعد الدليل.",
-        "الضجيج والتشويش بتاع الميكروفون ما متتكتبش كـ Vocal Tags.",
-        "التنفس العادي غير المسموع بوضوح ما مبتتسجلش."
+        "ضجيج الميكروفون والتشويش مش بيتكتبوا كـ Vocal Tags.",
+        "التنفس العادي اللي مش مسموع بوضوح مش بيتسجل."
       ],
-      pwEdited: "⚠ اتغيّر — اتسجلش في Maven حتى تاضغط احتفاظ", pwLose: "التعديلات بتاع #{n} اتسجلوش في Maven. تخلّيهم وتمشي؟",
-      subjCorr: "تصحيح", subjNoCorr: "مفيش تصحيح", subjCorrFail: "اتكتبش التصحيح في {name}", subjCorrDone: "✓ تصحح الوصف بتاع {name}", subjDup: "مكرر مع {name}", subjRange: "{n} subjects (خاص من 3 حتى 9)",
-      subjDelete: "مسح", subjDeleteTitle: "مسح {name} من Maven", subjNotOnPage: "ملقيتش {name} في الصفحة.", subjStill: "{name} لسه في الصفحة — يمكن Maven بيطلب تأكيد.", subjDeleted: "{name} اتمسح من Maven.",
-      play: "تشغيل التفريغ", pause: "توقيف",
-      timeLbl: "الوقت", speedLbl: "السرعة", timeBtn: "ضبط", timeWorking: "بحلل الصوت…", timeNoAudio: "ملقيتش ملف الصوت في ده الصفحة.", audioExpired: "الرابط بتاع الصوت خلص (403) — اعمل F5 للصفحة", timeShort: "الملف اللي اتلاقي أقصر من الـ segment (مش ملف المكالمة كله) — اعمل F5 للصفحة وجرب تاني", timeBad: "الـ start والـ end بتاع ده التفريغ مش صحاح.", timeNoSpeech: "ملقيتش كلام واضح في ده التفريغ.", timeSame: "✓ الوقت خلاص مضبوط", timeFail: "الصفحة مقبلتش الأوقات.", timeDone: "✓ تضبط (قبل: {s} → {e})", timeErr: "معرفتش نقرا الصوت: ", timeUndo: "رجّع الوقت الأصلي", timeUndoTip: "رجّع الوقت الأصلي: {s} → {e}", timeRestored: "↶ رجع الوقت الأصلي: {s} → {e}", timeManual: "✓ اتغيّر باليد: {s} → {e}", sendNoTask: "مفيش task — اااضغط على + الأول", autoTip: "Auto: كل segment وحدة وحدة حتى للأخير", autoStopTip: "ااضغط عشان توقف Auto", gptWarnTitle: "Gemini هو الأحسن للتفريغ الصوتي", gptWarnText: "من خلال التجارب، كشفنا إن Gemini هو الأحسن في التفريغ الصوتي: بيسمع ملفات الصوت مباشرة، وChatGPT بيفتحهم بـ Python وبيرجّع تفريغ فاضي ولا غالط.\nلو عايز تكمّل بـ ChatGPT، الاختيار بتاعك وانت اللي مسؤول عليه.", gptGo: "كمّل بـ ChatGPT", gptBack: "رجوع لـ Gemini", sendLbl: "إرسال", nudgeAi: "الـ JSON تعطل — هروح لصفحة Gemini ونرجع…", playBlocked: "مرضيش الصوت يبدا (الصفحة كانت مخبية؟) — Auto كمّل", subjTitle: "المواضيع", tasksTitle: "Tasks", dlTitle: "تحميل الـ .wav بتاع الـ segment", nothingCopy: "مفيش حاجة عشان ياتنسخ.", dupIgnored: "⚠ اتبعت من قبل — تجاهلت النسخة المكررة، #{n} بقا",  autoStopping: "بيقف…", autoAt: "Auto — segment #{n}…", autoNoReply: "مجاش الجواب فالوقت", autoEmpty: "الجواب بتاع #{n} فاضي", autoResend: "#{n}: Gemini مجاش الصوت كويس — هبعته تاني…", autoIncomplete: "#{n}: Gemini جاوب incomplete مرتين مرات — ", autoDone: "✓ Auto خلص — آخر segment #{n}", autoCountdown: "🔔 Remplace بتاع #{n} من بعد {s} — اااضغط على Auto عشان توقف", autoFail: "Auto وقف في #{n}: ", sendWorking: "ببعت الصوت بتاع #{n}…", sendLoading: "#{n}: بيتحمّل في Gemini — Send أول ما يتافتح وما يبقى حتى تحميل…", sendDone: "✓ #{n} اتبعت — مستني الجواب JSON", sendFail: "اتبعتش: ", bandAuto: "فلتر auto", bandManual: "فلتر", bandSet: "✓ الفلتر اتغيّر — Équilibrer هـ يستعملو", bandReset: "الفلتر رجع auto",
-      sentiment: "الإحساس", sentPos: "إيجابي", sentNeu: "محايد", sentNeg: "سلبي", sentPending: "⚠ اتسجلش حتى تاضغط احتفاظ ولا استبدال", sentFail: "معرفتش ناكتب الـ Sentiment في ده التفريغ.",
+      pwEdited: "⚠ اتعدّل — مش اتسجل في Maven لحد ما تدوس احتفاظ", pwLose: "تعديلات #{n} لسه ما اتسجلتش في Maven. تسيبها وتكمل؟",
+      subjCorr: "تصحيح", subjNoCorr: "مفيش تصحيح", subjCorrFail: "ما اتكتبش التصحيح في {name}", subjCorrDone: "✓ اتصحح وصف {name}", subjDup: "مكرر مع {name}", subjRange: "{n} subjects (لازم من 3 لـ 9)",
+      subjDelete: "مسح", subjDeleteTitle: "مسح {name} من Maven", subjNotOnPage: "مش لاقي {name} في الصفحة.", subjStill: "{name} لسه في الصفحة — ممكن Maven بيطلب تأكيد.", subjDeleted: "{name} اتمسح من Maven.",
+      play: "تشغيل التفريغ", pause: "إيقاف",
+      timeLbl: "الوقت", speedLbl: "السرعة", timeBtn: "ضبط", timeWorking: "بحلل الصوت…", timeNoAudio: "مش لاقي ملف الصوت في الصفحة دي.", audioExpired: "رابط الصوت خلص (403) — اعمل تحديث للصفحة (F5)", timeShort: "الملف اللي لقيته أقصر من الـ segment (مش ملف المكالمة كلها) — اعمل تحديث للصفحة (F5) وجرب تاني", timeBad: "بداية ونهاية التفريغ ده مش صح.", timeNoSpeech: "مش لاقي كلام واضح في التفريغ ده.", timeSame: "✓ الوقت مضبوط بالفعل", timeFail: "الصفحة ما قبلتش الأوقات.", timeDone: "✓ اتضبط (قبل: {s} ← {e})", timeErr: "ما قدرتش أقرا الصوت: ", timeUndo: "رجّع الوقت الأصلي", timeUndoTip: "رجّع الوقت الأصلي: {s} ← {e}", timeRestored: "↶ الوقت الأصلي اترجع: {s} ← {e}", timeManual: "✓ اتغيّر بإيدك: {s} ← {e}", sendNoTask: "مفيش Task — دوس على + الأول", autoTip: "غير مستخدم", autoStopTip: "غير مستخدم", gptWarnTitle: "Gemini هو الأحسن للتفريغ الصوتي", gptWarnText: "من التجربة، Gemini هو الأحسن في التفريغ الصوتي: بيسمع ملف الصوت مباشرة، وChatGPT بيفتحه بـ Python وبيرجّع تفريغ فاضي أو غلط.\nلو عايز تكمّل بـ ChatGPT، ده اختيارك وإنت المسؤول عنه.", gptGo: "كمّل بـ ChatGPT", gptBack: "ارجع لـ Gemini", sendLbl: "إرسال", aiError: "صفحة Gemini عرضت رسالة: ", nudgeAi: "لسه ما جاش رد Gemini — هفتح صفحته لحظة وأرجع (ده مش خطأ)…", playBlocked: "الصوت ما اشتغلش (يمكن الصفحة في الخلفية؟)", subjTitle: "المواضيع", tasksTitle: "Tasks", dlTitle: "تحميل الـ .wav بتاع الـ segment", nothingCopy: "مفيش حاجة تتنسخ.", dupIgnored: "⚠ اتبعت قبل كده — تجاهلت النسخة المكررة، #{n} هو اللي فضل",  autoStopping: "بيقف…", autoAt: "Auto — segment #{n}…", autoNoReply: "الرد ما جاش في الوقت المناسب", autoEmpty: "رد #{n} فاضي", autoResend: "#{n}: Gemini ما استلمش الصوت كويس — هبعته تاني…", autoIncomplete: "#{n}: Gemini رد incomplete مرتين — ", autoDone: "✓ خلص — آخر segment #{n}", autoCountdown: "🔔 استبدال #{n} بعد {s}", autoFail: "وقف عند #{n}: ", sendWorking: "باعت الصوت بتاع #{n}…", sendLoading: "#{n}: الملف بيتحمّل في Gemini — هيتبعت أول ما يخلص التحميل…", sendDone: "✓ #{n} اتبعت — مستني رد JSON", sendFail: "ما اتبعتش: ", bandAuto: "فلتر auto", bandManual: "فلتر", bandSet: "✓ الفلتر اتغيّر — زر الضبط هيستخدمه", bandReset: "الفلتر رجع auto",
+      sentiment: "الإحساس", sentPos: "إيجابي", sentNeu: "محايد", sentNeg: "سلبي", sentPending: "⚠ مش اتسجل لحد ما تدوس احتفاظ أو استبدال", sentFail: "ما قدرتش أكتب الـ Sentiment في التفريغ ده.",
       noAnnot: "(مفيش حاجة مكتوبة)",
       annotCheck: "راجع الـ annotation", waitNext: "مستني تفريغ جديد من {ai}…", latest: "آخر تفريغ من {ai}",
-      replace: "استبدال", keep: "احتفاظ", previous: "↶ السابق", search: "بحث", tagsBtn: "Tags ▾",
-      transAi: "تفريغ {ai}", transPw: "تفريغ Poliwag", subjects: "Subjects", filter: "فلترة", rereadPage: "↻ اعمل تاني قرا الصفحة",
+      next: "التالي", replace: "استبدال", keep: "احتفاظ", previous: "↶ السابق", search: "بحث", tagsBtn: "Tags ▾",
+      transAi: "تفريغ {ai}", transPw: "تفريغ Poliwag", subjects: "Subjects", filter: "فلترة", rereadPage: "↻ اقرا الصفحة تاني",
       newTask: "Task جديدة", collapse: "تصغير", lang: "اللغة", pickAi: "اختار الأداة",
-      vocalTags: "Vocal Tags", rulesTitle: "قواعد مهمة", obsoleteTitle: "Tags قديمة — ما تستعملهاش",
-      noTask: "مفيش Task — ااضغط +", noTaskShort: "مفيشة TASK",
+      vocalTags: "Vocal Tags", rulesTitle: "قواعد مهمة", obsoleteTitle: "Tags قديمة — ما تستخدمهاش",
+      noTask: "مفيش Task — دوس +", noTaskShort: "مفيش TASK",
       st_ready: "READY", st_prompt_sent: "WAITING", st_opening: "OPENING", st_analysing: "FILTRE…", st_manual: "MANUAL", st_disconnected: "OFFLINE",
-      pillManual: "ااضغط عشان اتنسخ البرومبت", pillOffline: "ااضغط عشان تلقى التاب بتاع {ai}",
-      summary: "{n} أوديو محفوظ · أوتوماتيك", dupSummary: " · {n} مكرر لازم مراجعة",
-      typeNumber: "اكتب رقم واضغط بحث.", empty: "(فاضي)",
-      segNotFound: "التفريغ #{n} مفيش — لقيت {k} تفريغات في الصفحة (الترقيم بيبدأ من 0).",
-      noSegs: "ما لقيت حتى تفريغ في ده الصفحة. افتح محرر التفريغ واعمل تاني بحث.",
-      verb_replaced: "اتغيّر", verb_kept: "اتساب", verb_restored: "رجع (السابق)",
-      already: "↺ سبق تخدم · {verb} على {time}", mapNote: "{ai} #{k} → Poliwag #{n}", noJsonK: "مفيش JSON {ai} #{k}",
-      reread: "↻ اعمل تاني قرا {ai} · لقيت #{k}", notYet: "لسه لسه مجاش JSON بتاع #{k}", reading: "↻ بقرا {ai}…",
-      dupLike: "⚠ بيشبه تفريغ جا قبل — مكرر؟", same: "✓ زي اللي تكتب", diff: "⚠ مختلف على اللي تكتب", found: "لقيت #{n}",
-      subjMeta: "{n} اتقرأت من Maven", subjChecked: " · تشافو مع {n} أوديو", subjWaiting: " · {ai} بيراجع…", subjError: " · خطأ: ",
-      subjNone: "ما تقرا حتى Subject — افتح صفحة الـ Subjects وااضغط ↻.", toDelete: "لازم ياتمسح",
-      cntKeep: "{n} مذكور", cntDel: "{n} لازم ياتمسحو",
-      e_noTask: "مفيش Task. ااضغط + عشان تبدا.", e_noNum: "اكتب الرقم بتاع التفريغ واضغط بحث.",
-      e_emptyAi: "تفريغ {ai} فاضي — مفيش ما يتكتب.", e_segNF: "التفريغ #{n} مفيش في الصفحة.",
-      e_pageRefused: "الصفحة مقبلتش النص. ما تسجل حاجة.", e_histFail: "النص تاكتب في الصفحة ولكن الـ historique اتسجلش: ",
-      ok_replaced: "#{n} اتغيّر في Poliwag → دوز لـ #{m}", ok_kept: "#{n} اتساب زي ما هو → دوز لـ #{m}",
-      ok_last: "#{n} خلص — ده هو آخر تفريغ في الصفحة.", e_noUndo: "مفيش حتى تعديل يترجع.",
-      ok_undo: "#{n}: النص اللي كان قبل رجع لـ Poliwag.", err: "خطأ.",
-      confirmNew: "تبدا Task جديدة؟\n{id} هتفضل محفوظة فالـ historique.",
-      opening: "Task جديدة — بفتح {ai}…", clickManual: "\nااضغط على MANUAL عشان اتنسخ البرومبت.",
-      tasksTitle: "Tasks ({n})", noTasks: "مفيش Task — ااضغط + عشان تبدا.",
-      taskSub: "{date} {time} · {a} أوديو · {d} تخدمو", current: " · الحالية", load: "حل", del: "مسح",
-      loaded: "{id} اتفتحت.", confirmDel: "اتمسح {id} مع الـ historique بتاعها؟\nمفيش رجوع.", deleted: "{id} ااتمسحت.",
-      tagHint: "[{tag}] مختار — ااضغط فالنص عشان تدخلو",
-      noSubjPage: "مفيش حتى Subject في ده الصفحة.", subjRead: "{n} Subjects اتقرأت.",
-      filterSent: "برومبت الفلترة اتبعت لـ {ai}…", promptCopied: "البرومبت اتنسخ — لصقو في {ai}.", copyFail: "معرفتش ننسخ.",
-      reconnected: "لقيت المحادثة بتاع {ai}.", notFound: "ملقيتهاش.",
-      helperOff: "برنامج الصوت ما متركبش (native-host\\install.bat)", notDetected: "ما تلقاش", audioFail: "معرفتش نبدّل الصوت.",
-      dupSaved: "⚠ تفريغ جديد بيشبه واحد جا قبل — راجعو", newSaved: "✓ تفريغ جديد من {ai} — اتحط في الخانة",
-      newWhileEditing: "✓ أوديو #{n} تسجل (انت بتعدّل #{c} — اكتب {n} واضغط بحث)",
-      invalid: "JSON بتاع {ai} مرفوض:\n", filterReady: "الفلترة واجدة — افتح أيقونة الـ Subjects.",
-      chatNoTitle: "بدّل ده الرقم لو تخربقات المزامنة مع Poliwag", undoTitle: "رجّع آخر كلمة بدّلتي ولا مسحتي (Ctrl+Z)"
+      pillManual: "دوس عشان تنسخ البرومبت", pillOffline: "دوس عشان تلاقي تاب {ai}",
+      summary: "{n} أوديو محفوظ · أوتوماتيك", dupSummary: " · {n} مكرر محتاج مراجعة",
+      typeNumber: "اكتب رقم ودوس بحث.", empty: "(فاضي)",
+      segNotFound: "التفريغ #{n} مش موجود — لقيت {k} تفريغ في الصفحة (الترقيم بيبدأ من 0).",
+      noSegs: "مش لاقي أي تفريغ في الصفحة دي. افتح محرر التفريغ وابحث تاني.",
+      verb_replaced: "اتبدّل", verb_kept: "اتسابت", verb_restored: "اترجع (السابق)",
+      already: "↺ اتعمل قبل كده · {verb} الساعة {time}", mapNote: "{ai} #{k} → Poliwag #{n}", noJsonK: "مفيش JSON من {ai} #{k}",
+      reread: "↻ اقرا {ai} تاني · لقيت #{k}", notYet: "لسه ما جاش JSON بتاع #{k}", reading: "↻ بقرا {ai}…",
+      dupLike: "⚠ شبه تفريغ سابق — مكرر؟", same: "✓ زي المكتوب", diff: "⚠ مختلف عن المكتوب", found: "لقيت #{n}",
+      subjMeta: "{n} اتقرت من Maven", subjChecked: " · اتراجعت مع {n} أوديو", subjWaiting: " · {ai} بيراجع…", subjError: " · خطأ: ",
+      subjNone: "ما قريتش أي Subject — افتح صفحة الـ Subjects ودوس ↻.", toDelete: "لازم يتمسح",
+      cntKeep: "{n} متذكّر", cntDel: "{n} لازم يتمسحوا",
+      e_noTask: "مفيش Task. دوس + عشان تبدأ.", e_noNum: "اكتب رقم التفريغ ودوس بحث.",
+      e_emptyAi: "تفريغ {ai} فاضي — مفيش حاجة تتكتب.", e_segNF: "التفريغ #{n} مش موجود في الصفحة.",
+      e_pageRefused: "الصفحة ما قبلتش النص. ما اتسجلش حاجة.", e_histFail: "النص اتكتب في الصفحة لكن السجل ما اتحفظش: ",
+      ok_replaced: "#{n} اتبدّل في Poliwag — دوس التالي", ok_kept: "#{n} اتساب زي ما هو — دوس التالي",
+      ok_last: "#{n} خلص — ده آخر تفريغ في الصفحة.", e_noUndo: "مفيش تعديل يترجع.",
+      ok_undo: "#{n}: النص القديم اترجع في Poliwag.", err: "خطأ.",
+      confirmNew: "تبدأ Task جديدة؟\n{id} هتفضل محفوظة في السجل.",
+      opening: "Task جديدة — بفتح {ai}…", clickManual: "\nدوس على MANUAL عشان تنسخ البرومبت.",
+      tasksTitle: "Tasks ({n})", noTasks: "مفيش Task — دوس + عشان تبدأ.",
+      taskSub: "{date} {time} · {a} أوديو · {d} اتعملوا", current: " · الحالية", load: "فتح", del: "مسح",
+      loaded: "{id} اتفتحت.", confirmDel: "تمسح {id} مع سجلها؟\nما فيش رجوع.", deleted: "{id} اتمسحت.",
+      tagHint: "[{tag}] متحدد — دوس في النص عشان تدخله",
+      noSubjPage: "مفيش أي Subject في الصفحة دي.", subjRead: "{n} Subjects اتقرت.",
+      filterSent: "برومبت الفلترة اتبعت لـ {ai}…", promptCopied: "البرومبت اتنسخ — الصقه في {ai}.", copyFail: "ما قدرتش أنسخ.",
+      reconnected: "لقيت محادثة {ai}.", notFound: "ما لقيتهاش.",
+      helperOff: "برنامج الصوت مش متثبت (native-host\\install.bat)", notDetected: "مش موجود", audioFail: "ما قدرتش أبدّل الصوت.",
+      dupSaved: "⚠ تفريغ جديد شبه واحد سابق — راجعه", newSaved: "✓ تفريغ جديد من {ai} — اتحط في الخانة",
+      newWhileEditing: "✓ أوديو #{n} اتسجل (إنت بتعدّل #{c} — اكتب {n} ودوس بحث)",
+      invalid: "JSON من {ai} مرفوض:\n", filterReady: "الفلترة جاهزة — افتح أيقونة الـ Subjects.",
+      chatNoTitle: "غيّر الرقم ده لو المزامنة مع Poliwag مش مظبوطة", undoTitle: "رجّع آخر كلمة غيّرتها أو مسحتها (Ctrl+Z)"
     },
     en: {
       dir: "ltr",
@@ -109,11 +110,11 @@
       subjCorr: "Correction", subjNoCorr: "No correction given", subjCorrFail: "Could not write the correction for {name}", subjCorrDone: "✓ Note of {name} corrected", subjDup: "duplicate of {name}", subjRange: "{n} subjects (must be 3 to 9)",
       subjDelete: "Delete", subjDeleteTitle: "Remove {name} in Maven", subjNotOnPage: "{name} is not on the page.", subjStill: "{name} is still on the page — Maven may be asking for a confirmation.", subjDeleted: "{name} removed in Maven.",
       play: "Play this segment", pause: "Pause",
-      timeLbl: "Time", speedLbl: "Speed", timeBtn: "Tighten", timeWorking: "analysing the audio…", timeNoAudio: "No audio file found on this page.", audioExpired: "The audio link has expired (403) — reload the page (F5)", timeShort: "The audio file found on the page is shorter than this segment (not the full call) — reload the page (F5) and try again", timeBad: "This segment's start / end are not valid.", timeNoSpeech: "No clear speech found in this segment.", timeSame: "✓ times already tight", timeFail: "The page did not accept the times.", timeDone: "✓ tightened (before: {s} → {e})", timeErr: "Could not read the audio: ", timeUndo: "Back to the original times", timeUndoTip: "Back to the original times: {s} → {e}", timeRestored: "↶ original times restored: {s} → {e}", timeManual: "✓ set by hand: {s} → {e}", sendNoTask: "No task — click + first", autoTip: "Auto: every segment, one after the other, to the last", autoStopTip: "Click to stop Auto", gptWarnTitle: "Gemini is the best for audio transcription", gptWarnText: "Our tests showed that Gemini is the best for audio transcription: it listens to the audio files directly, while ChatGPT opens them with Python and returns empty or wrong transcriptions.\nIf you want to continue with ChatGPT, it is your choice and your responsibility.", gptGo: "Continue", gptBack: "Back to Gemini",  sendLbl: "Send", nudgeAi: "The JSON is late — visiting the Gemini page and coming back…", playBlocked: "Playback did not start (page in the background?) — Auto goes on", subjTitle: "Subjects", tasksTitle: "Tasks", dlTitle: "Download the segment .wav", nothingCopy: "Nothing to copy.", dupIgnored: "⚠ already sent — duplicate ignored, #{n} kept",  autoStopping: "Stopping…", autoAt: "Auto — segment #{n}…", autoNoReply: "no reply in time", autoEmpty: "the reply for #{n} is empty", autoResend: "#{n}: the AI did not get the audio — sending it again…", autoIncomplete: "#{n}: the AI answered incomplete twice — ", autoDone: "✓ Auto finished — last segment #{n}", autoCountdown: "🔔 Replace #{n} in {s}s — click Auto to stop", autoFail: "Auto stopped at #{n}: ", sendWorking: "Sending the audio of #{n}…", sendLoading: "#{n}: loading in the AI page — Send once it is open and nothing is loading…", sendDone: "✓ #{n} sent — waiting for the JSON", sendFail: "Not sent: ", bandAuto: "filter auto", bandManual: "filter", bandSet: "✓ filter set — Tighten will use it", bandReset: "filter back to auto",
+      timeLbl: "Time", speedLbl: "Speed", timeBtn: "Tighten", timeWorking: "analysing the audio…", timeNoAudio: "No audio file found on this page.", audioExpired: "The audio link has expired (403) — reload the page (F5)", timeShort: "The audio file found on the page is shorter than this segment (not the full call) — reload the page (F5) and try again", timeBad: "This segment's start / end are not valid.", timeNoSpeech: "No clear speech found in this segment.", timeSame: "✓ times already tight", timeFail: "The page did not accept the times.", timeDone: "✓ tightened (before: {s} → {e})", timeErr: "Could not read the audio: ", timeUndo: "Back to the original times", timeUndoTip: "Back to the original times: {s} → {e}", timeRestored: "↶ original times restored: {s} → {e}", timeManual: "✓ set by hand: {s} → {e}", sendNoTask: "No task — click + first", autoTip: "Auto: every segment, one after the other, to the last", autoStopTip: "Click to stop Auto", gptWarnTitle: "Gemini is the best for audio transcription", gptWarnText: "Our tests showed that Gemini is the best for audio transcription: it listens to the audio files directly, while ChatGPT opens them with Python and returns empty or wrong transcriptions.\nIf you want to continue with ChatGPT, it is your choice and your responsibility.", gptGo: "Continue", gptBack: "Back to Gemini",  sendLbl: "Send", aiError: "The AI page shows a message: ", nudgeAi: "No Gemini answer yet — opening its page for a moment and coming back (not an error)…", playBlocked: "Playback did not start (page in the background?) — Auto goes on", subjTitle: "Subjects", tasksTitle: "Tasks", dlTitle: "Download the segment .wav", nothingCopy: "Nothing to copy.", dupIgnored: "⚠ already sent — duplicate ignored, #{n} kept",  autoStopping: "Stopping…", autoAt: "Auto — segment #{n}…", autoNoReply: "no reply in time", autoEmpty: "the reply for #{n} is empty", autoResend: "#{n}: the AI did not get the audio — sending it again…", autoIncomplete: "#{n}: the AI answered incomplete twice — ", autoDone: "✓ Auto finished — last segment #{n}", autoCountdown: "🔔 Replace #{n} in {s}s — click Auto to stop", autoFail: "Auto stopped at #{n}: ", sendWorking: "Sending the audio of #{n}…", sendLoading: "#{n}: loading in the AI page — Send once it is open and nothing is loading…", sendDone: "✓ #{n} sent — waiting for the JSON", sendFail: "Not sent: ", bandAuto: "filter auto", bandManual: "filter", bandSet: "✓ filter set — Tighten will use it", bandReset: "filter back to auto",
       sentiment: "Sentiment", sentPos: "Positive", sentNeu: "Neutral", sentNeg: "Negative", sentPending: "⚠ saved on Keep or Replace", sentFail: "Could not set the sentiment on this segment.",
       noAnnot: "(nothing written)",
       annotCheck: "check annotation", waitNext: "waiting for the next {ai} transcription…", latest: "latest from {ai}",
-      replace: "Replace", keep: "Keep", previous: "↶ Previous", search: "Search", tagsBtn: "Tags ▾",
+      next: "Next", replace: "Replace", keep: "Keep", previous: "↶ Previous", search: "Search", tagsBtn: "Tags ▾",
       transAi: "{ai} trans", transPw: "Poliwag trans", subjects: "Subjects", filter: "Filter", rereadPage: "↻ Re-read page",
       newTask: "New task", collapse: "Collapse", lang: "Language", pickAi: "Choose the tool",
       vocalTags: "Vocal Tags", rulesTitle: "Important Rules", obsoleteTitle: "Obsolete Tags — Do Not Use",
@@ -134,7 +135,7 @@
       e_noTask: "No task. Click + to start.", e_noNum: "Type the segment number, then Search.",
       e_emptyAi: "{ai} trans is empty — nothing to write.", e_segNF: "Segment #{n} not found on the page.",
       e_pageRefused: "The page did not accept the text. Nothing was saved.", e_histFail: "Text written to the page, but history wasn't saved: ",
-      ok_replaced: "#{n} replaced in Poliwag → moving to #{m}", ok_kept: "#{n} kept as is → moving to #{m}",
+      ok_replaced: "#{n} replaced in Poliwag — press Next", ok_kept: "#{n} kept as is — press Next",
       ok_last: "#{n} done — that was the last segment on the page.", e_noUndo: "Nothing to undo.",
       ok_undo: "#{n}: previous text put back in Poliwag.", err: "Error.",
       confirmNew: "Start a new task?\n{id} stays saved in the history.",
@@ -174,11 +175,11 @@
       subjCorr: "Correction", subjNoCorr: "Pas de correction proposée", subjCorrFail: "Correction non écrite pour {name}", subjCorrDone: "✓ Note de {name} corrigée", subjDup: "doublon de {name}", subjRange: "{n} subjects (il en faut 3 à 9)",
       subjDelete: "Supprimer", subjDeleteTitle: "Supprimer {name} dans Maven", subjNotOnPage: "{name} introuvable dans la page.", subjStill: "{name} est toujours là — Maven demande peut-être une confirmation.", subjDeleted: "{name} supprimé dans Maven.",
       play: "Écouter ce segment", pause: "Pause",
-      timeLbl: "Temps", speedLbl: "Vitesse", timeBtn: "Équilibrer", timeWorking: "analyse du son…", timeNoAudio: "Aucun fichier audio trouvé dans la page.", audioExpired: "Lien audio expiré (403) — rechargez la page (F5)", timeShort: "Le fichier audio trouvé est plus court que ce segment (ce n'est pas l'appel entier) — rechargez la page (F5) puis réessayez", timeBad: "Le start / end de ce segment n'est pas valide.", timeNoSpeech: "Pas de parole claire dans ce segment.", timeSame: "✓ temps déjà ajustés", timeFail: "La page n'a pas accepté les temps.", timeDone: "✓ ajusté (avant : {s} → {e})", timeErr: "Lecture du son impossible : ", timeUndo: "Revenir aux temps d'origine", timeUndoTip: "Revenir aux temps d'origine : {s} → {e}", timeRestored: "↶ temps d'origine remis : {s} → {e}", timeManual: "✓ réglé à la main : {s} → {e}", sendNoTask: "Pas de task — cliquez + d'abord", autoTip: "Auto : chaque segment, l'un après l'autre, jusqu'au dernier", autoStopTip: "Cliquez pour arrêter Auto", gptWarnTitle: "Gemini est le meilleur pour la transcription audio", gptWarnText: "Nos tests ont montré que Gemini est le meilleur pour la transcription audio : il écoute directement les fichiers son, alors que ChatGPT les ouvre avec Python et renvoie des transcriptions vides ou fausses.\nSi vous voulez continuer avec ChatGPT, c'est votre choix et votre responsabilité.", gptGo: "Continuer avec ChatGPT", gptBack: "Revenir à Gemini", sendLbl: "Envoyer", nudgeAi: "Le JSON tarde — passage par la page Gemini puis retour…", playBlocked: "La lecture n'a pas démarré (page en arrière-plan ?) — Auto continue", subjTitle: "Sujets", tasksTitle: "Tâches", dlTitle: "Télécharger le .wav du segment", nothingCopy: "Rien à copier.", dupIgnored: "⚠ déjà envoyé — doublon ignoré, #{n} gardé", autoStopping: "Arrêt en cours…", autoAt: "Auto — segment #{n}…", autoNoReply: "pas de réponse à temps", autoEmpty: "la réponse de #{n} est vide", autoResend: "#{n} : l'IA n'a pas reçu le son — nouvel envoi…", autoIncomplete: "#{n} : l'IA a répondu incomplete deux fois — ", autoDone: "✓ Auto terminé — dernier segment #{n}", autoCountdown: "🔔 Remplace #{n} dans {s} s — cliquez Auto pour arrêter", autoFail: "Auto arrêté à #{n} : ", sendWorking: "Envoi du son de #{n}…", sendLoading: "#{n} : chargement dans l'IA — envoi dès que Send est ouvert, sans chargement…", sendDone: "✓ #{n} envoyé — en attente du JSON", sendFail: "Non envoyé : ", bandAuto: "filtre auto", bandManual: "filtre", bandSet: "✓ filtre réglé — Équilibrer va l'utiliser", bandReset: "filtre revenu en auto",
+      timeLbl: "Temps", speedLbl: "Vitesse", timeBtn: "Équilibrer", timeWorking: "analyse du son…", timeNoAudio: "Aucun fichier audio trouvé dans la page.", audioExpired: "Lien audio expiré (403) — rechargez la page (F5)", timeShort: "Le fichier audio trouvé est plus court que ce segment (ce n'est pas l'appel entier) — rechargez la page (F5) puis réessayez", timeBad: "Le start / end de ce segment n'est pas valide.", timeNoSpeech: "Pas de parole claire dans ce segment.", timeSame: "✓ temps déjà ajustés", timeFail: "La page n'a pas accepté les temps.", timeDone: "✓ ajusté (avant : {s} → {e})", timeErr: "Lecture du son impossible : ", timeUndo: "Revenir aux temps d'origine", timeUndoTip: "Revenir aux temps d'origine : {s} → {e}", timeRestored: "↶ temps d'origine remis : {s} → {e}", timeManual: "✓ réglé à la main : {s} → {e}", sendNoTask: "Pas de task — cliquez + d'abord", autoTip: "Auto : chaque segment, l'un après l'autre, jusqu'au dernier", autoStopTip: "Cliquez pour arrêter Auto", gptWarnTitle: "Gemini est le meilleur pour la transcription audio", gptWarnText: "Nos tests ont montré que Gemini est le meilleur pour la transcription audio : il écoute directement les fichiers son, alors que ChatGPT les ouvre avec Python et renvoie des transcriptions vides ou fausses.\nSi vous voulez continuer avec ChatGPT, c'est votre choix et votre responsabilité.", gptGo: "Continuer avec ChatGPT", gptBack: "Revenir à Gemini", sendLbl: "Envoyer", aiError: "La page IA affiche : ", nudgeAi: "Pas encore de réponse de Gemini — passage par sa page puis retour (pas une erreur)…", playBlocked: "La lecture n'a pas démarré (page en arrière-plan ?) — Auto continue", subjTitle: "Sujets", tasksTitle: "Tâches", dlTitle: "Télécharger le .wav du segment", nothingCopy: "Rien à copier.", dupIgnored: "⚠ déjà envoyé — doublon ignoré, #{n} gardé", autoStopping: "Arrêt en cours…", autoAt: "Auto — segment #{n}…", autoNoReply: "pas de réponse à temps", autoEmpty: "la réponse de #{n} est vide", autoResend: "#{n} : l'IA n'a pas reçu le son — nouvel envoi…", autoIncomplete: "#{n} : l'IA a répondu incomplete deux fois — ", autoDone: "✓ Auto terminé — dernier segment #{n}", autoCountdown: "🔔 Remplace #{n} dans {s} s — cliquez Auto pour arrêter", autoFail: "Auto arrêté à #{n} : ", sendWorking: "Envoi du son de #{n}…", sendLoading: "#{n} : chargement dans l'IA — envoi dès que Send est ouvert, sans chargement…", sendDone: "✓ #{n} envoyé — en attente du JSON", sendFail: "Non envoyé : ", bandAuto: "filtre auto", bandManual: "filtre", bandSet: "✓ filtre réglé — Équilibrer va l'utiliser", bandReset: "filtre revenu en auto",
       sentiment: "Sentiment", sentPos: "Positif", sentNeu: "Neutre", sentNeg: "Négatif", sentPending: "⚠ enregistré au Garder ou Remplace", sentFail: "Impossible de mettre le sentiment sur ce segment.",
       noAnnot: "(rien d'écrit)",
       annotCheck: "vérifier l'annotation", waitNext: "en attente du prochain JSON {ai}…", latest: "dernier JSON {ai}",
-      replace: "Remplace", keep: "Garder", previous: "↶ Précédent", search: "Chercher", tagsBtn: "Tags ▾",
+      next: "Suivant", replace: "Remplace", keep: "Garder", previous: "↶ Précédent", search: "Chercher", tagsBtn: "Tags ▾",
       transAi: "Trans {ai}", transPw: "Trans Poliwag", subjects: "Subjects", filter: "Filtres", rereadPage: "↻ Relire la page",
       newTask: "Nouvelle task", collapse: "Réduire", lang: "Langue", pickAi: "Choisir l'outil",
       vocalTags: "Vocal Tags", rulesTitle: "Règles importantes", obsoleteTitle: "Tags obsolètes — ne pas utiliser",
@@ -199,7 +200,7 @@
       e_noTask: "Pas de task. Cliquez + pour commencer.", e_noNum: "Tapez d'abord le numéro du segment puis Search.",
       e_emptyAi: "Trans {ai} est vide — rien à écrire.", e_segNF: "Segment #{n} introuvable dans la page.",
       e_pageRefused: "La page n'a pas accepté le texte. Rien n'a été enregistré.", e_histFail: "Texte écrit dans la page, mais l'historique n'a pas été sauvegardé : ",
-      ok_replaced: "#{n} remplacé dans Poliwag → passage au #{m}", ok_kept: "#{n} gardé — le texte original reste → passage au #{m}",
+      ok_replaced: "#{n} remplacé dans Poliwag — appuyez sur Suivant", ok_kept: "#{n} gardé — le texte original reste — appuyez sur Suivant",
       ok_last: "#{n} fait — c'était le dernier segment de la page.", e_noUndo: "Rien à annuler.",
       ok_undo: "#{n} : texte précédent remis dans Poliwag.", err: "Erreur.",
       confirmNew: "Commencer une nouvelle task ?\n{id} reste sauvegardée dans l'historique.",
@@ -492,6 +493,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
     <div class="spacer"></div>
     <button type="button" class="btn green" id="btn-replace">${ICON.swap}<span id="lbl-replace">Remplace</span></button>
     <button type="button" class="btn yellow" id="btn-keep">${ICON.shield}<span id="lbl-keep">Garder</span></button>
+    <button type="button" class="btn green" id="btn-next"><span id="lbl-next">التالي</span></button>
     <div class="sep"></div>
     <div class="seg2" role="radiogroup" aria-label="Audio output">
       <button type="button" role="radio" aria-checked="false" id="out-headset" disabled>${ICON.headset}Headset</button>
@@ -1044,12 +1046,21 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
   // After Send, the AI tab is in the background: Chrome slows its timers down, so its reply
   // may not be reported. While a reply is awaited, the bar asks for it every 2 seconds.
   let waitReply = null;
+  let lastAiError = null; // last error / limit message seen on the Gemini / ChatGPT page
   setInterval(async () => {
     if (!waitReply) return;
     const got = (task()?.audios || []).some((a) => a.n > waitReply.mark);
     if (got) { waitReply = null; if (sendBusy) { sendBusy = false; renderSendBtn(); } return; } // the JSON is here: Send is free again
     if (Date.now() > waitReply.until) { waitReply = null; return; }
-    try { await send("PA_READ_NOW"); } catch {}
+    let rn = null;
+    try { rn = await send("PA_READ_NOW"); } catch {}
+    // the AI page itself shows an error / limit message: say it now (no point in waiting 3 minutes)
+    if (rn && rn.pageError) {
+      lastAiError = { at: Date.now(), msg: rn.pageError };
+      waitReply.nudges = 99;
+      setNote("chat-note", t_("aiError") + rn.pageError, "redish");
+      return;
+    }
     // still no JSON after 10 s: go to the Gemini page so it delivers its answer, then back to Maven
     if (waitReply && waitReply.nudges < 3 && Date.now() - waitReply.lastNudge > 10000) {
       waitReply.nudges++; waitReply.lastNudge = Date.now();
@@ -1110,6 +1121,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
   }
   function renderAuto() {
     const b2 = $("btn-auto");
+    if (!b2) return;
     b2.classList.toggle("running", !!autoRun);
     $("bar").classList.toggle("automode", !!autoRun);
     const stopping = !!autoRun && autoRun.stop;
@@ -1153,9 +1165,11 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
           const t = boxText();
           if (t && t !== before) return { a: { text: t } };
           if (lastInvalid && lastInvalid.at > sentAt) return { bad: lastInvalid };
+          if (lastAiError && lastAiError.at > sentAt) return { aiErr: lastAiError };
           return null;
         }, 180000, 300);
         if (res?.a) got = res.a;
+        else if (res?.aiErr) throw new Error(t_("aiError") + res.aiErr.msg);
         else if (res?.bad) {
           if (attempt === 2) throw new Error(t_("autoIncomplete", { n }) + (res.bad.notes || []).join(" "));
           setNote("chat-note", t_("autoResend", { n }), "orange");
@@ -2264,7 +2278,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
       setNote("chat-note", "", "");
     }
 
-    if (audio && audio.dupOf !== null && audio.dupOf !== undefined) {
+    if (audio && !showHistory && audio.dupOf !== null && audio.dupOf !== undefined) {
       setNote("dup-note", t_("dupLike"), "orange");
     } else {
       setNote("dup-note", "", "");
@@ -2496,7 +2510,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
     if (!r?.ok) toast(t_("e_histFail") + (r?.error || ""), "warn", 5000);
     else toast(t_("ok_replaced", { n: currentN, m: currentN + 1 }), "ok");
     dirty = false;
-    await goNext();
+    renderAll();
   }
 
   async function keep() {
@@ -2516,7 +2530,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
     if (r?.ok) toast(t_("ok_kept", { n: currentN, m: currentN + 1 }), "ok");
     else toast(r?.error || t_("err"), "err");
     dirty = false;
-    if (r?.ok) await goNext();
+    if (r?.ok) renderAll();
   }
 
   // After Remplace / Garder: go to the next Poliwag segment, keeping the same ChatGPT offset if you set one.
@@ -2696,6 +2710,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
     $("btn-lang").textContent = LANG.toUpperCase();
     $("lbl-replace").textContent = t_("replace");
     $("lbl-keep").textContent = t_("keep");
+    $("lbl-next").textContent = t_("next");
     $("lbl-search").textContent = t_("search");
     $("btn-undo").textContent = t_("previous");
     $("btn-undo").title = t_("undoTitle");
@@ -2943,6 +2958,10 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
     if (isPlayingNow()) pauseSegment();
     autoRun.keepDone = replace();
   });
+  $("btn-next").addEventListener("click", async () => {
+    if (currentN === null) return toast(t_("e_noNum"), "err");
+    await goNext();
+  });
   $("btn-keep").addEventListener("click", () => {
     if (!autoRun) return keep();
     if (autoRun.replacing || autoRun.skip) return;
@@ -2961,7 +2980,9 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
   $("btn-tags").addEventListener("click", () => toggleTagPanel());
   $("btn-send").addEventListener("click", sendSegmentToAi);
   $("btn-dl").addEventListener("click", downloadSegmentWav);
-  $("btn-auto").addEventListener("click", autoStart);
+  // Auto button removed (v15.6): Search -> Send -> Replace, and Replace jumps to the next segment by itself.
+  $("btn-auto").style.setProperty("display", "none", "important");
+  $("btn-auto").remove();
   renderAuto();
   $("btn-subjects").addEventListener("click", () => {
     const open = $("subj").classList.contains("hidden");
@@ -3123,3 +3144,4 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
   send("PA_AUDIO_LIST").then(renderAudio);
   send("PA_STATUS_CHECK");
 })();
+

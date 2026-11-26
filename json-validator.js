@@ -1,3 +1,4 @@
+// By svmovo (github.com/svmovo) - Sam Poliwag Assist
 // Poliwag Assistance v2 — safe JSON parsing and validation of ChatGPT results.
 
 export const RECOMMENDATIONS = ["KEEP", "REMOVE", "REVIEW MANUALLY"];
@@ -210,3 +211,4 @@ export function validateAnalysis(obj, { taskId, strict = true } = {}) {
   if (errors.length) return { ok: false, errors };
   return { ok: true, errors: [], value: { type: "subject_analysis", status: "completed", task_id: obj.task_id, subjects } };
 }
+
