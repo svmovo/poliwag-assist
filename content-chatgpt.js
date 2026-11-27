@@ -1,5 +1,5 @@
-// By svmovo (github.com/svmovo) - Redwood Assist
-// Redwood Assist v7 — content script for chatgpt.com AND gemini.google.com
+// By svmovo (github.com/svmovo) - Poliwag Assist
+// Poliwag Assist v7 — content script for chatgpt.com AND gemini.google.com
 //
 // What it does (and only this):
 //   • SEND_PROMPT : types a prompt into the ChatGPT composer and presses Send.

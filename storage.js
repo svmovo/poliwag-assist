@@ -1,4 +1,4 @@
-// By svmovo (github.com/svmovo) - Redwood Assist
+// By svmovo (github.com/svmovo) - Poliwag Assist
 // Poliwag Assistance v2 — local storage (chrome.storage.local only; nothing leaves the PC).
 //
 // pa_state : { currentTaskId, settings, chatgpt, lastEvent }

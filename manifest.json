@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Redwood Assist",
-  "short_name": "Redwood Assist",
-  "version": "15.8.0",
+  "name": "Poliwag Assist",
+  "short_name": "Poliwag Assist",
+  "version": "15.9.0",
   "description": "Top bar for Poliwag transcription: ChatGPT or Gemini JSON capture, segment search, Replace / Keep, vocal tags (AR/EN/FR) and subject filter. By svmovo.",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzmHIB7OPoc/rQspDtrS6U438DUQoGxOa2UNMSl6/wdEiljVm6k5XbVInX8wQH1S04EVdlw61uWKF6QoRYb72KD3ht7ZXRnmRHTUvwYRseIK62y0i1JxNBZBNWFkXZcKz6bGmJMn/Dhv7pCHbV3qfxyI0lUqzJ0t2eRUtJ3VyJQneDSkaejxH2WW9AvCUxJ+tz4vl0BWbn5ZWhuk2EkJTRDa2vPwpm6yfUCe0xav+dE8cdagk/OiNacG8WDu8uBkSUY+T5MzVmKC5P5zWCkIMAjhQVWtk81xxylswHLRU/qF0XAU1jrx2TIZzgYxixy8o6v9+p/9ti++L637CnQWioQIDAQAB",
   "minimum_chrome_version": "116",
@@ -37,7 +37,7 @@
     }
   ],
   "action": {
-    "default_title": "Redwood Assist - By svmovo",
+    "default_title": "Poliwag Assist - By svmovo",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
@@ -52,6 +52,6 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "version_name": "V15.8 by svmovo",
+  "version_name": "V15.9 by svmovo",
   "author": "svmovo"
 }

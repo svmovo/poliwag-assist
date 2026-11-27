@@ -1,4 +1,4 @@
-// By svmovo (github.com/svmovo) - Redwood Assist
+// By svmovo (github.com/svmovo) - Poliwag Assist
 // Poliwag Assistance v2 — safe JSON parsing and validation of ChatGPT results.
 
 export const RECOMMENDATIONS = ["KEEP", "REMOVE", "REVIEW MANUALLY"];

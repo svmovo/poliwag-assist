@@ -1,5 +1,5 @@
-// By svmovo (github.com/svmovo) - Redwood Assist
-// Redwood Assist v2 — popup: turns the top bar on for the Poliwag site, or hides / shows it.
+// By svmovo (github.com/svmovo) - Poliwag Assist
+// Poliwag Assist v2 — popup: turns the top bar on for the Poliwag site, or hides / shows it.
 
 const $ = (id) => document.getElementById(id);
 let tab = null;

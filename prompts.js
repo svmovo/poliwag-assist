@@ -1,4 +1,4 @@
-// By svmovo (github.com/svmovo) - Redwood Assist
+// By svmovo (github.com/svmovo) - Poliwag Assist
 // Poliwag Assistance v7 — prompts sent to ChatGPT or Gemini, and matching of the subject filter.
 
 // Poliwag transcription rules, sent with the preparation prompt AND with every segment (button Send).
