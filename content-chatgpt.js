@@ -167,25 +167,25 @@
 
   async function sendPrompt(text, sendWaitMs = 8000) {
     const composer = await waitFor(() => q(COMPOSER_SELECTORS), 25000);
-    if (!composer) return { ok: false, error: "AI composer not found. Are you signed in?" };
+    if (!composer) return { ok: false, error: "مش لاقي خانة الكتابة. هل إنت مسجّل دخول؟" };
 
     const before = userMessageCount();
     insertText(composer, text);
     await sleep(400);
     if (!composerText(composer).includes(text.slice(0, 30))) {
-      return { ok: false, error: "Could not type the prompt." };
+      return { ok: false, error: "ما قدرتش أكتب البرومبت." };
     }
 
     const send = await waitFor(() => {
       const b = q(SEND_SELECTORS);
       return b && !b.disabled ? b : null;
     }, sendWaitMs);
-    if (!send) return { ok: false, error: "Send button not available." };
+    if (!send) return { ok: false, error: "زر الإرسال مش متاح." };
     send.click();
 
     // Sent when the composer empties or a new user message appears (works across ChatGPT layouts).
     const sent = await waitFor(() => userMessageCount() > before || composerText(q(COMPOSER_SELECTORS) || composer).trim().length < 5, 10000);
-    if (!sent) return { ok: false, error: "The prompt did not appear in the conversation." };
+    if (!sent) return { ok: false, error: "البرومبت ما ظهرش في المحادثة." };
     return { ok: true, url: location.href };
   }
 
@@ -241,10 +241,10 @@
   }
   async function sendFile(msg) {
     const composer = await waitFor(() => q(COMPOSER_SELECTORS), 25000);
-    if (!composer) return { ok: false, error: "AI composer not found. Are you signed in?" };
+    if (!composer) return { ok: false, error: "مش لاقي خانة الكتابة. هل إنت مسجّل دخول؟" };
     const file = b64ToFile(String(msg.b64 || ""), String(msg.name || "segment.wav"), msg.mime || "audio/wav");
     if (!(await attachFile(file, composer))) {
-      return { ok: false, error: (IS_GEMINI ? "Gemini" : "ChatGPT") + " n'a pas accepté le fichier audio (file inputs: " + document.querySelectorAll('input[type="file"]').length + ")." };
+      return { ok: false, error: (IS_GEMINI ? "Gemini" : "ChatGPT") + " ما قبلش ملف الصوت." };
     }
     // Give the upload time to finish completely before sending (15 s, 20 s for a long audio):
     // sending too early can send a file that is not fully loaded.
@@ -282,13 +282,15 @@
       await waitFor(isSent, 30000, 150);
       break; // never a second click (it could stop the AI's answer)
     }
+    // it may have been sent already (the page sent it, or it left the box): that is a success, not an error
+    if (!clicked && isSent()) return { ok: true, url: location.href };
     if (!clicked) {
       // Send never opened. Only if the file is still in the message box, send it with its name;
       // never send the name alone (the AI would answer without having the audio).
       if (seenInBox && inBox()) return sendPrompt(file.name, 8000);
-      return { ok: false, error: "Le fichier audio n'est plus dans la zone de message — non envoyé." };
+      return { ok: false, error: "ملف الصوت مش موجود في خانة الرسالة — ما اتبعتش، جرّب إرسال تاني." };
     }
-    if (!isSent()) return { ok: false, error: "The audio did not appear in the conversation." };
+    if (!isSent()) return { ok: false, error: "الصوت ما ظهرش في المحادثة." };
     return { ok: true, url: location.href };
   }
 

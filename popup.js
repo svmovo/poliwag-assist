@@ -21,7 +21,7 @@ async function render() {
   $("ver").textContent = chrome.runtime.getManifest().version;
 
   if (!/^https:\/\//.test(url) || /^https:\/\/(chatgpt\.com|gemini\.google\.com)\//.test(url)) {
-    $("where").textContent = "Ouvrez la page Poliwag (Maven), puis cliquez de nouveau sur l'icône.";
+    $("where").textContent = "افتح صفحة Poliwag (Maven) وبعدين دوس على الأيقونة تاني.";
     $("need").hidden = true;
     $("active").hidden = true;
     return;
@@ -29,19 +29,19 @@ async function render() {
 
   origin = new URL(url).origin;
   $("where").innerHTML = "";
-  $("where").append("Site : ", Object.assign(document.createElement("span"), { className: "host", textContent: new URL(url).host }));
+  $("where").append("الموقع: ", Object.assign(document.createElement("span"), { className: "host", textContent: new URL(url).host }));
 
   const granted = await chrome.permissions.contains({ origins: [origin + "/*"] });
   $("need").hidden = granted;
   $("active").hidden = !granted;
-  $("btn-toggle").textContent = (await hiddenSetting()) ? "Afficher la barre" : "Masquer la barre";
+  $("btn-toggle").textContent = (await hiddenSetting()) ? "إظهار الشريط" : "إخفاء الشريط";
 }
 
 $("btn-enable").addEventListener("click", async () => {
   showError("");
   try {
     const ok = await chrome.permissions.request({ origins: [origin + "/*"] });
-    if (!ok) return showError("Autorisation refusée — la barre ne peut pas s'afficher sur ce site.");
+    if (!ok) return showError("الإذن اترفض — الشريط مش هيظهر في الموقع ده.");
     // The background registers the bar for this site; show it right away in this tab too.
     await chrome.runtime.sendMessage({ type: "PA_SYNC_BAR" });
     await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["bar.js"] }).catch(() => {});

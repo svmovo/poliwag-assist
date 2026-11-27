@@ -111,7 +111,7 @@ async function findTaskTab(task) {
 
 async function sendPromptToTab(tabId, text) {
   await waitTabComplete(tabId);
-  if (!(await ensureContentScript(tabId))) return { ok: false, error: "AI page not reachable." };
+  if (!(await ensureContentScript(tabId))) return { ok: false, error: "صفحة الذكاء الاصطناعي مش متاحة." };
   try { return await chrome.tabs.sendMessage(tabId, { type: "PA_SEND_PROMPT", text }); }
   catch (e) { return { ok: false, error: String(e.message || e) }; }
 }
@@ -121,14 +121,14 @@ async function sendPromptToTab(tabId, text) {
 async function sendSegment(m) {
   const { state, tasks } = await loadAll();
   const task = tasks[state.currentTaskId];
-  if (!task) return { ok: false, error: "Pas de task — cliquez + d'abord." };
+  if (!task) return { ok: false, error: "مفيش Task — دوس + الأول." };
   const tab = await findTaskTab(task);
-  if (!tab) return { ok: false, error: "Conversation de la task introuvable (onglet fermé ?)." };
+  if (!tab) return { ok: false, error: "مش لاقي محادثة الـ Task (يمكن التاب اتقفل؟)." };
   const name = m.name || `poliwag_seg_${m.n}.wav`;
   // The rules were given once in the first prompt of the conversation: only the .wav is sent.
   const prompt = "";
   await waitTabComplete(tab.id);
-  if (!(await ensureContentScript(tab.id))) return { ok: false, error: "AI page not reachable." };
+  if (!(await ensureContentScript(tab.id))) return { ok: false, error: "صفحة الذكاء الاصطناعي مش متاحة." };
   await mutate((st, tasks2) => {
     const t2 = tasks2[st.currentTaskId];
     if (t2) { t2.pendingSends = (t2.pendingSends || 0) + 1; t2.sendCount = (t2.sendCount || 0) + 1; t2.lastSendAt = Date.now(); }
@@ -137,11 +137,11 @@ async function sendSegment(m) {
   try { r = await chrome.tabs.sendMessage(tab.id, { type: "PA_SEND_FILE", b64: m.b64, name, mime: "audio/wav", text: prompt, waitMs: m.waitMs }); }
   catch (e) { r = { ok: false, error: String(e.message || e) }; }
   if (!r?.ok) await mutate((st, ts) => { const t2 = ts[st.currentTaskId]; if (t2) t2.pendingSends = Math.max(0, (t2.pendingSends || 0) - 1); });
-  return r || { ok: false, error: "No answer from the AI page." };
+  return r || { ok: false, error: "صفحة الذكاء الاصطناعي ما ردتش." };
 }
 
 async function readLatestFromTab(tabId) {
-  if (!(await ensureContentScript(tabId))) return { ok: false, error: "AI page not reachable." };
+  if (!(await ensureContentScript(tabId))) return { ok: false, error: "صفحة الذكاء الاصطناعي مش متاحة." };
   try { return await chrome.tabs.sendMessage(tabId, { type: "PA_READ_LATEST" }); }
   catch (e) { return { ok: false, error: String(e.message || e) }; }
 }
@@ -264,7 +264,7 @@ async function newTask(subjects, engineKey) {
     if (Array.isArray(subjects) && subjects.length) { t.subjects = subjects; t.subjectsReadAt = nowIso(); }
     state.currentTaskId = t.id;
     state.lastEvent = { kind: "task", at: nowIso(), taskId: t.id };
-    state.chatgpt = { status: "opening", tabId: null, message: "Opening " + ENGINES[eng].name + "…", manualPrompt: null, updatedAt: nowIso() };
+    state.chatgpt = { status: "opening", tabId: null, message: "بفتح " + ENGINES[eng].name + "…", manualPrompt: null, updatedAt: nowIso() };
     return t;
   });
   const tab = await chrome.tabs.create({ url: ENGINES[eng].newUrl, active: true });
@@ -276,21 +276,21 @@ async function newTask(subjects, engineKey) {
   const prompt = buildPreparationPrompt(task.id, lang);
   const r = await sendPromptToTab(tab.id, prompt);
   if (!r?.ok) {
-    await setChat("manual", "Auto-send failed — copy the prompt and paste it into " + ENGINES[eng].name + ".", { manualPrompt: prompt });
+    await setChat("manual", "الإرسال التلقائي فشل — انسخ البرومبت والصقه في " + ENGINES[eng].name + ".", { manualPrompt: prompt });
     return { ok: false, error: r?.error, taskId: task.id };
   }
-  await setChat("prompt_sent", "En attente de READY…", { manualPrompt: null });
+  await setChat("prompt_sent", "مستني READY…", { manualPrompt: null });
   return { ok: true, taskId: task.id };
 }
 
 async function readNow() {
   const { state, tasks } = await loadAll();
   const task = tasks[state.currentTaskId];
-  if (!task) return { ok: false, error: "Pas de task." };
+  if (!task) return { ok: false, error: "مفيش Task." };
   const tab = await findTaskTab(task);
   if (!tab) {
-    if (state.chatgpt.status !== "manual") await setChat("disconnected", "AI tab of the task not found.");
-    return { ok: false, error: "AI tab not found." };
+    if (state.chatgpt.status !== "manual") await setChat("disconnected", "مش لاقي تاب الذكاء الاصطناعي بتاع الـ Task.");
+    return { ok: false, error: "مش لاقي تاب الذكاء الاصطناعي." };
   }
   const latest = await readLatestFromTab(tab.id);
   if (!latest?.ok) return { ok: false, error: latest?.error };
@@ -309,35 +309,35 @@ async function runFilter(pageSubjects) {
   }
   const { state, tasks } = await loadAll();
   const task = tasks[state.currentTaskId];
-  if (!task) return { ok: false, error: "Pas de task." };
-  if (!task.subjects.length) return { ok: false, error: "Aucun subject lu dans la page." };
+  if (!task) return { ok: false, error: "مفيش Task." };
+  if (!task.subjects.length) return { ok: false, error: "ما قريتش أي Subject من الصفحة." };
   const audios = task.audios
     .map((a) => {
       const seg = task.segments[a.n];
       return { n: a.n, text: seg?.action === "replaced" ? seg.finalText : (a.draft || a.chatText) };
     })
     .filter((a) => a.text);
-  if (!audios.length) return { ok: false, error: "Aucune transcription reçue pour l'instant." };
+  if (!audios.length) return { ok: false, error: "لسه ما وصلش أي تفريغ." };
   const prompt = buildFilterPrompt(task, task.subjects, audios);
   await mutate((s, ts) => { ts[task.id].filter = { ...ts[task.id].filter, status: "waiting", error: null, prompt, at: nowIso() }; });
   const tab = await findTaskTab(task);
   if (!tab) {
-    await setChat("manual", "Onglet ChatGPT fermé — copiez le prompt Filtres et collez-le dans ChatGPT.", { manualPrompt: prompt });
-    return { ok: false, error: "ChatGPT tab not found.", manualPrompt: true };
+    await setChat("manual", "تاب ChatGPT اتقفل — انسخ برومبت الفلترة والصقه في ChatGPT.", { manualPrompt: prompt });
+    return { ok: false, error: "مش لاقي تاب ChatGPT.", manualPrompt: true };
   }
   const r = await sendPromptToTab(tab.id, prompt);
   if (!r?.ok) {
-    await setChat("manual", "Auto-send failed — copy the filter prompt and paste it into the AI.", { manualPrompt: prompt });
+    await setChat("manual", "الإرسال التلقائي فشل — انسخ برومبت الفلترة والصقه في الذكاء الاصطناعي.", { manualPrompt: prompt });
     return { ok: false, error: r?.error, manualPrompt: true };
   }
-  await setChat("analysing", "Checking subjects…");
+  await setChat("analysing", "بتراجع الـ Subjects…");
   return { ok: true };
 }
 
 async function reconnect() {
   const { state, tasks } = await loadAll();
   const task = tasks[state.currentTaskId];
-  if (!task) return { ok: false, error: "Pas de task." };
+  if (!task) return { ok: false, error: "مفيش Task." };
   let tab = await findTaskTab(task);
   if (!tab && task.chat.url) {
     tab = await chrome.tabs.create({ url: task.chat.url, active: false });
@@ -345,7 +345,7 @@ async function reconnect() {
     await waitTabComplete(tab.id);
     await ensureContentScript(tab.id);
   }
-  if (!tab) return { ok: false, error: "Conversation de la task introuvable." };
+  if (!tab) return { ok: false, error: "مش لاقي محادثة الـ Task." };
   await setChat("ready", "");
   return { ok: true };
 }
@@ -355,7 +355,7 @@ function askAudioHelper(message) {
     try {
       chrome.runtime.sendNativeMessage("com.poliwag.audio", message, (reply) => {
         if (chrome.runtime.lastError) resolve({ ok: false, offline: true, error: chrome.runtime.lastError.message });
-        else resolve(reply || { ok: false, error: "Empty reply." });
+        else resolve(reply || { ok: false, error: "الرد فاضي." });
       });
     } catch (e) { resolve({ ok: false, offline: true, error: String(e) }); }
   });
@@ -392,7 +392,7 @@ const handlers = {
     const { state, tasks } = await loadAll();
     const task = tasks[state.currentTaskId];
     const tab = task ? await findTaskTab(task) : null;
-    if (!tab) return { ok: false, error: "AI tab not found." };
+    if (!tab) return { ok: false, error: "مش لاقي تاب الذكاء الاصطناعي." };
     await chrome.tabs.reload(tab.id);
     return { ok: true };
   },
@@ -412,7 +412,7 @@ const handlers = {
   }),
   PA_SEGMENT_SAVE: (m) => mutate((s, ts) => {
     const t = ts[s.currentTaskId];
-    if (!t) return { ok: false, error: "Pas de task." };
+    if (!t) return { ok: false, error: "مفيش Task." };
     t.segments[m.n] = { action: m.action, audioN: m.audioN ?? m.n, chatText: m.chatText || "", finalText: m.finalText || "", pageTextBefore: m.pageTextBefore ?? "", at: nowIso() };
     t.updatedAt = nowIso();
     return { ok: true };
@@ -426,19 +426,19 @@ const handlers = {
     const tab = await tabAlive(task.chat.tabId);
     if (!tab && ["ready", "prompt_sent", "analysing"].includes(state.chatgpt.status)) {
       const found = await findTaskTab(task);
-      if (!found) await setChat("disconnected", "Onglet ChatGPT fermé.");
+      if (!found) await setChat("disconnected", "تاب ChatGPT اتقفل.");
     }
     return { ok: true };
   },
   PA_SET_CURRENT: (m) => mutate((s, ts) => {
-    if (!ts[m.taskId]) return { ok: false, error: "Task introuvable." };
+    if (!ts[m.taskId]) return { ok: false, error: "الـ Task مش موجودة." };
     s.currentTaskId = m.taskId;
     s.lastEvent = { kind: "task", at: nowIso(), taskId: m.taskId };
-    s.chatgpt = { ...s.chatgpt, status: "disconnected", tabId: ts[m.taskId].chat.tabId || null, message: "Task loaded — click the badge to find its AI conversation." };
+    s.chatgpt = { ...s.chatgpt, status: "disconnected", tabId: ts[m.taskId].chat.tabId || null, message: "الـ Task اتفتحت — دوس على الشارة عشان تلاقي محادثتها." };
     return { ok: true };
   }),
   PA_DELETE_TASK: (m) => mutate((s, ts) => {
-    if (!ts[m.taskId]) return { ok: false, error: "Task introuvable." };
+    if (!ts[m.taskId]) return { ok: false, error: "الـ Task مش موجودة." };
     delete ts[m.taskId];
     if (s.currentTaskId === m.taskId) {
       s.currentTaskId = null;
@@ -515,7 +515,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
 chrome.tabs.onRemoved.addListener(async (tabId) => {
   const { state } = await loadAll();
-  if (state.chatgpt.tabId === tabId) await setChat("disconnected", "AI tab closed — transcriptions are saved.", { tabId: null });
+  if (state.chatgpt.tabId === tabId) await setChat("disconnected", "تاب الذكاء الاصطناعي اتقفل — التفريغات محفوظة.", { tabId: null });
 });
 
 async function checkOnWake() {
@@ -523,6 +523,6 @@ async function checkOnWake() {
   const task = tasks[state.currentTaskId];
   if (!task) return;
   const tab = await tabAlive(task.chat.tabId);
-  if (!tab) await setChat("disconnected", "Navigateur redémarré — ouvrez la conversation de la task.", { tabId: null });
+  if (!tab) await setChat("disconnected", "المتصفح اتفتح من جديد — افتح محادثة الـ Task.", { tabId: null });
                            }
 

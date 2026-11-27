@@ -100,6 +100,9 @@ export function transcriptionRules(language) {
     `- QUIET SPEECH — PRECISION: some speakers are very quiet, far from the microphone or whispering. Listen to the audio carefully, as many times as needed, and write EVERY audible word, even if it is faint or low in volume. Never skip, shorten or summarise a quiet part, and never leave out words just because they are hard to hear. Keep the exact words as spoken, in order, with nothing added.`,
     `  · Only when a part is truly impossible to understand after careful listening, mark just that part with [unintelligible], following the Poliwag guidelines. A faint word you can still make out must be written, not tagged.`,
     `  · If you are unsure of a faint word, write your best hearing and put it in "uncertain_words".`,
+    `  · Listen to the SOUNDS, not to what would be likely: do not replace a faint word by a different common word that sounds a little like it, and do not complete a sentence from guesswork. The speech is natural Egyptian Arabic: use the context of the whole sentence to choose between words that sound close, but only write what is really said.`,
+    `  · Listen to the audio a second time before answering, and check that every word you wrote is really in the audio.`,
+    `- EXACT PRONUNCIATION: write each word exactly as it is PRONOUNCED in the audio, letter by letter, in the speaker's own dialect. Do not normalize or correct it to standard Arabic spelling or to the "expected" word. If the speaker says a word with a "ج" sound (for example "دجايج" for "دقايق"), write it with ج; if a letter is pronounced differently from its standard form (ق as ج, ق as ء, ث as ت or س, ذ as د or ز, ظ as ز…), write the letter that is really heard. Never replace a heard word by a more common or "more correct" word.`,
     `- Put any word you are not sure about in "uncertain_words".`
   ];
 }

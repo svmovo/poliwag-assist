@@ -1007,6 +1007,20 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
     }
     return new Blob([buf], { type: "audio/wav" });
   }
+  // Quiet audio is made louder before it is sent (peak to about 90%, at most x8), so faint words are heard.
+  async function normalizeWav(blob) {
+    const buf = await blob.arrayBuffer(), v = new DataView(buf);
+    const n = (buf.byteLength - 44) >> 1;
+    let peak = 1;
+    for (let i = 0; i < n; i++) { const x = Math.abs(v.getInt16(44 + i * 2, true)); if (x > peak) peak = x; }
+    const gain = Math.min(8, (0.9 * 32767) / peak);
+    if (gain <= 1.05) return blob;
+    for (let i = 0; i < n; i++) {
+      const y = Math.round(v.getInt16(44 + i * 2, true) * gain);
+      v.setInt16(44 + i * 2, Math.max(-32768, Math.min(32767, y)), true);
+    }
+    return new Blob([buf], { type: "audio/wav" });
+  }
   const manualLevel = (n) => levelMap.get(LEVEL_KEY);
   // Automatic noise level of a segment (same rule as the graph: quiet part ×2), from its own audio.
   async function autoLevelFor(n) {
@@ -1046,6 +1060,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
   // After Send, the AI tab is in the background: Chrome slows its timers down, so its reply
   // may not be reported. While a reply is awaited, the bar asks for it every 2 seconds.
   let waitReply = null;
+  let machineHint = { n: null, text: "" }; // machine (Poliwag) text shown as a grey hint in the Gemini box after Send
   let lastAiError = null; // last error / limit message seen on the Gemini / ChatGPT page
   setInterval(async () => {
     if (!waitReply) return;
@@ -1278,11 +1293,14 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
     if (!task()) return toast(t_("sendNoTask"), "err");
     if (sendBusy) return;
     const n = currentN;
+    // right away: the machine (Poliwag) text of this segment is shown in the Gemini box as a grey hint
+    try { machineHint = { n, text: (segTextarea(n)?.value || "").trim() }; renderChat({ fill: false }); } catch {}
     sendBusy = true; renderSendBtn();
     setNote("chat-note", t_("sendWorking", { n }), "muted");
     try {
       let { blob } = await segmentWav(n);
-      { const lv = await filterLevel(n); if (lv != null) blob = await gateWav(blob, lv); } // send what you hear, without the noise
+      { const lv = await filterLevel(n); if (lv != null) blob = await gateWav(blob, lv * 0.4); } // gentle noise filter: quiet words must stay
+      blob = await normalizeWav(blob); // louder, so faint speech is heard
       const b64 = await blobToB64(blob);
       // watch for the reply from now on (also frees Send if the AI page answers before it reports "sent")
       waitReply = { until: Date.now() + 180000, mark: (task()?.audios || []).reduce((m, a) => Math.max(m, a.n), -1), sentAt: Date.now(), nudges: 0, lastNudge: Date.now() };
@@ -2264,6 +2282,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
       autosize(box);
     }
 
+    box.placeholder = (!box.value && machineHint.n === n && machineHint.text) ? ("نص الماكينة: " + machineHint.text) : "";
     $("chat-meta").textContent = audio ? audio.language : "";
     // Remplace blinks only for a ChatGPT reply that arrived after this segment was chosen (its reply).
     $("btn-replace").classList.toggle("blinkb", !!audio && !showHistory && n !== null && segAudioMark.n === n && audio.n > segAudioMark.max);
@@ -2510,6 +2529,11 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
     if (!r?.ok) toast(t_("e_histFail") + (r?.error || ""), "warn", 5000);
     else toast(t_("ok_replaced", { n: currentN, m: currentN + 1 }), "ok");
     dirty = false;
+    // reset: the Gemini box for this segment is cleared and nothing waits for a reply any more
+    machineHint = { n: null, text: "" };
+    waitReply = null;
+    chatOverride = false;
+    $("chat-box").value = "";
     renderAll();
   }
 
@@ -2706,7 +2730,7 @@ button:focus-visible,input:focus-visible{outline:2px solid #E38AA2;outline-offse
   function applyLang() {
     const wanted = "ar";
     const changed = wanted !== LANG;
-    LANG = I18N[wanted] ? wanted : "ar";
+    LANG = "ar"; // the bar is always Arabic
     $("btn-lang").textContent = LANG.toUpperCase();
     $("lbl-replace").textContent = t_("replace");
     $("lbl-keep").textContent = t_("keep");
