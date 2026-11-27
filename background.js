@@ -1,5 +1,5 @@
-// By svmovo (github.com/svmovo) - Sam Poliwag Assist
-// Sam Poliwag Assist v7 — background service worker (ChatGPT or Gemini).
+// By svmovo (github.com/svmovo) - Redwood Assist
+// Redwood Assist v7 — background service worker (ChatGPT or Gemini).
 // The bar on the Poliwag page and the ChatGPT tab both talk to it; it is the only writer of task data.
 
 import { loadAll, mutate, createTask, nowIso, hashText, similarity } from "./storage.js";

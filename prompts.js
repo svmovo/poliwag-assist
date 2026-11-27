@@ -1,4 +1,4 @@
-// By svmovo (github.com/svmovo) - Sam Poliwag Assist
+// By svmovo (github.com/svmovo) - Redwood Assist
 // Poliwag Assistance v7 — prompts sent to ChatGPT or Gemini, and matching of the subject filter.
 
 // Poliwag transcription rules, sent with the preparation prompt AND with every segment (button Send).
@@ -102,6 +102,7 @@ export function transcriptionRules(language) {
     `  · If you are unsure of a faint word, write your best hearing and put it in "uncertain_words".`,
     `  · Listen to the SOUNDS, not to what would be likely: do not replace a faint word by a different common word that sounds a little like it, and do not complete a sentence from guesswork. The speech is natural Egyptian Arabic: use the context of the whole sentence to choose between words that sound close, but only write what is really said.`,
     `  · Listen to the audio a second time before answering, and check that every word you wrote is really in the audio.`,
+    `- GOVERNING RULE: the most important thing is a CORRECT transcription of the speech, exactly as heard, following the Poliwag transcription guidelines. When anything in this prompt seems to conflict with the guidelines or with what is really heard, the guidelines and the audio win.`,
     `- EXACT PRONUNCIATION: write each word exactly as it is PRONOUNCED in the audio, letter by letter, in the speaker's own dialect. Do not normalize or correct it to standard Arabic spelling or to the "expected" word. If the speaker says a word with a "ج" sound (for example "دجايج" for "دقايق"), write it with ج; if a letter is pronounced differently from its standard form (ق as ج, ق as ء, ث as ت or س, ذ as د or ز, ظ as ز…), write the letter that is really heard. Never replace a heard word by a more common or "more correct" word.`,
     `- Put any word you are not sure about in "uncertain_words".`
   ];

@@ -1,5 +1,5 @@
-// By svmovo (github.com/svmovo) - Sam Poliwag Assist
-// Sam Poliwag Assist v7 — floating top bar on the Poliwag (Maven) page.
+// By svmovo (github.com/svmovo) - Redwood Assist
+// Redwood Assist v7 — floating top bar on the Poliwag (Maven) page.
 //
 // What it touches on the page:
 //   • it adds ONE element (the bar, isolated in a Shadow DOM) floating above the page;
